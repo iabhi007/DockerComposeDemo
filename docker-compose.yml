@@ -1,5 +1,5 @@
 services:
-  backend:
+  backend: # name of the service is the DNS name as mentioned in nginx.config
     image: my-backend-app
     build:
       context: .
@@ -9,8 +9,8 @@ services:
   nginx-proxy:
     image: proxy_nginx
     build:
-      context: .
-      dockerfile: nginx.dockerfile
+      context: ./docker #This is the path for the docker file
+      dockerfile: nginx.dockerfile # docker file name
     ports:
       - '80:80'
     depends_on:
