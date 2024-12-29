@@ -1,0 +1,21 @@
+services:
+  backend:
+    image: my-backend-app
+    build:
+      context: .
+      dockerfile: app.Dockerfile
+    networks:
+      - app-network
+  nginx-proxy:
+    image: proxy_nginx
+    build:
+      context: .
+      dockerfile: nginx.dockerfile
+    ports:
+      - '80:80'
+    depends_on:
+      - backend
+    networks:
+      - app-network
+networks:
+  app-network:
